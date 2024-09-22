@@ -188,13 +188,10 @@ USE_TZ = True
 
 
 # Static files & Media
-
+STATIC_URL = '/static/'
 STATICFILES_DIRS = (str(BASE_DIR.joinpath("static")),)
-#STATIC_ROOT = str(BASE_DIR.joinpath("staticfiles", "static"))
+STATIC_ROOT = str(BASE_DIR.joinpath("staticfiles"))
 MEDIA_ROOT = str(BASE_DIR.joinpath("media"))
-
-# Add this at the end of the file
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'static')
 
 if USE_S3_STORAGE:
     DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
