@@ -4,7 +4,6 @@ from pathlib import Path
 from django.core.management.utils import get_random_secret_key
 
 import environ
-from urllib.parse import urlparse
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -29,19 +28,22 @@ ALLOWED_HOSTS = env.list(
 
 DATABASE_URL = env.str("DATABASE_URL", default=False)
 
-if DATABASE_URL:
-    # Parse the URL
-    url = urlparse(DATABASE_URL)
-
-    # Construct the database config
+if env('POSTGRES_DATABASE', default=None) and env('POSTGRES_USER', default=None):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': url.path[1:],
-            'USER': url.username,
-            'PASSWORD': url.password,
-            'HOST': url.hostname,
-            'PORT': url.port,
+            'NAME': env('POSTGRES_DATABASE'),
+            'USER': env('POSTGRES_USER'),
+            'PASSWORD': env('POSTGRES_PASSWORD'),
+            'HOST': env('POSTGRES_HOST'),
+            'PORT': '5432',  # or your PostgreSQL port
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
 

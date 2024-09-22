@@ -124,6 +124,7 @@ urllib3==1.26.14
     #   botocore
 virtualenv==20.19.0
     # via pre-commit
+dj-database-url
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
