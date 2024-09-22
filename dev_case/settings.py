@@ -26,7 +26,7 @@ ALLOWED_HOSTS = env.list(
     ],
 )
 
-DATABASE_URL = env.str("DATABASE_URL", default=False)
+#DATABASE_URL = env.str("DATABASE_URL", default=False)
 
 if env('POSTGRES_DATABASE', default=None) and env('POSTGRES_USER', default=None):
     DATABASES = {
@@ -147,15 +147,15 @@ if USE_PLAUSIBLE_ANALYTICS:
 WSGI_APPLICATION = "dev_case.wsgi.application"
 
 
-if DATABASE_URL:
-    DATABASES = {"default": env.db()}
-else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        }
-    }
+#if DATABASE_URL:
+#    DATABASES = {"default": env.db()}
+#else:
+#    DATABASES = {
+#        "default": {
+#            "ENGINE": "django.db.backends.sqlite3",
+#            "NAME": BASE_DIR / "db.sqlite3",
+#        }
+#    }
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
