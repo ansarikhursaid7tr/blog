@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  {% block meta %}{% endblock meta %}
+  <title>{{ main_config.site_name }} {% block title%}{% endblock title %}</title>
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  {% block styles %}{% endblock styles %}
+  <script src="{% static 'js/main.js'%}"></script>
+  {% if use_umami %}
+  <script async defer data-website-id="{{ umami_id }}" src="{{ umami_url }}"></script>
+  {% endif %}
+  {% if use_plausible %}
+  <script async defer data-domain="{{ plausible_data_domain }}" src="{{ plausible_url }}"></script>
+  {% endif %}
+  {% if main_config.favicon %}
+  <link rel="icon" href="{{ main_config.favicon.url}}" type="image/png" />
+  {% endif %}
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header>
+    <div class="navbar">
+      <div class="container flex">
+        <h1>
+          <a class="logo" href="{% url 'home' %}">{{ main_config.site_name }}</a>
+        </h1>
+        <nav>
+          <ul>
+            <li><a href="{% url 'blog' %}">Blog</a></li>
+            <li><a href="{% url 'projects' %}">Projects</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+            <li><a href="{% url 'search' %}">Search</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  {% block content %}{% endblock content%}
+
+  <!-- Footer -->
+  <footer class="container">
+    <ul>
+      {% spaceless %}
+      {% if pages %}
+      {% for page in pages %}
+      <li><a href="{{ page.get_absolute_url }}">{{ page.title }}</a></li>
+      {% endfor %}
+      {% endif %}
+      {% endspaceless %}
+      <li><a href="{% url 'feed' %}">RSS</a></li>
+    </ul>
+    <p class="text-center">
+      {{ main_config.copyright_footer }}
+    </p>
+  </footer>
+</body>
+
+</html>

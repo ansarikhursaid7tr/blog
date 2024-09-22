@@ -1,0 +1,105 @@
+{% extends "base.html"%}
+{% load static %}
+{% load markdown_tags %}
+{% block title%} - {{ post.title }}{% endblock title %}
+{% block meta %}
+  <meta property=og:title content="{{ post.title }}">
+{% if post.seo %}
+  <meta name="description" content="{{ post.seo }}">
+  <meta property=og:description name=description content="{{ post.seo }}">
+{% endif %}
+{% if post.image %}
+  <meta name=twitter:card content="summary_large_image">
+  <meta property="og:image" content="{{ post.image.url }}">
+{% endif %}
+{% endblock meta %}
+{% block styles %}
+  <link href="{% static 'vendor/style-codehilite.css' %}" rel="stylesheet" />
+{% endblock styles %}
+{% block content %}
+<main>
+  {% if post.image %}
+  <div class="container margin-top">
+    <div class="flex">
+      <div class="project-image">
+        <img class="margin-top" src="{{ post.image.url }}" alt="{{ post.title }}" />
+      </div>
+    </div>
+    <div class="small-container">
+      <div class="details-wrapper">
+        <div>
+          <h2 class="details-item">Author</h2>
+          <ul class="details-item__list">
+            <li>{{ post.author.get_full_name|default:"Add First-Name and Surname to your Profile" }}</li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="details-item">Tags</h2>
+          <ul class="details-item__list">
+            {% for cat in post.category.all %}
+            <li>{{ cat.name }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  <article class="small-container">
+    <h1 class="title margin-top">{{ post.title }}</h1>
+    <div class="text-card">
+      <p class="text-card__date"><time>{{ post.created|date:"SHORT_DATE_FORMAT" }}</time></p>
+      <!-- Markdown Content -->
+      <div class="md-content">
+        <p class="text-card__text">{{ post.content | markdown | safe }}</p>
+      </div>
+    </div>
+  </article>
+  <!-- Comments -->
+  <div class="small-container">
+    <h3 class="main-headline text-center">Comments</h3>
+    {% if not comments %}
+    <div class="flex flex-dir-col">
+      <p class="">There are no comments yet.</p>
+    </div>
+    {% else %}
+    {% for comment in comments %}
+    <p class="lead color-primary no-margin-bottom">{{comment.author}}</p>
+    <p class="no-margin-bottom"><small><time>{{comment.date|date:"SHORT_DATE_FORMAT"}}</time></small></p>
+    <p>{{comment.message}}</p>
+    {% endfor %}
+    {% endif %}
+    <div class="text-center">
+      <button class="btn-small no-margin" id="expandable-btn" onclick="main.toggleCommentForm()">Leave a comment</button>
+    </div>
+    <!-- Comments-Form -->
+    <div class="margin-top flex">
+      <div id="expandable-div">
+        <form action="" method="POST">
+          {% csrf_token %}
+          <ul>
+            <li>
+              <label for="{{ form.author.id_for_label }}">Name</label>
+              {{ form.author }}
+            </li>
+            <li>
+              <label for="{{ form.message.id_for_label }}">Message</label>
+              {{ form.message }}
+            </li>
+            <li>
+              <label class="captcha-label" for="{{ form.captcha.id_for_label }}">Captcha</label>
+              {{ form.captcha }}
+            </li>
+            <li>
+              <button type="submit">Comment</button>
+            </li>
+          </ul>
+        </form>
+      </div>
+    </div>
+    {% if is_submitted %}
+    <p class="lead color-primary text-center">Thanks a lot.<br>Your comment will be published here as soon as possible.</p>
+    {% endif %}
+  </div>
+</main>
+{% endblock content %}
