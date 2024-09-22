@@ -26,26 +26,7 @@ ALLOWED_HOSTS = env.list(
     ],
 )
 
-#DATABASE_URL = env.str("DATABASE_URL", default=False)
-
-if env('POSTGRES_DATABASE', default=None) and env('POSTGRES_USER', default=None):
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': env('POSTGRES_DATABASE'),
-            'USER': env('POSTGRES_USER'),
-            'PASSWORD': env('POSTGRES_PASSWORD'),
-            'HOST': env('POSTGRES_HOST'),
-            'PORT': '5432',  # or your PostgreSQL port
-        }
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+DATABASE_URL = env.str("DATABASE_URL", default=False)
 
 ADMIN_LOCATION = env.str("ADMIN_LOCATION", default="admin/")
 
@@ -147,15 +128,24 @@ if USE_PLAUSIBLE_ANALYTICS:
 WSGI_APPLICATION = "dev_case.wsgi.application"
 
 
-#if DATABASE_URL:
-#    DATABASES = {"default": env.db()}
-#else:
-#    DATABASES = {
-#        "default": {
-#            "ENGINE": "django.db.backends.sqlite3",
-#            "NAME": BASE_DIR / "db.sqlite3",
-#        }
-#    }
+if DATABASE_URL:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': env('POSTGRES_DATABASE'),
+            'USER': env('POSTGRES_USER'),
+            'PASSWORD': env('POSTGRES_PASSWORD'),
+            'HOST': env('POSTGRES_HOST'),
+            'PORT': '5432',  # or your PostgreSQL port
+        }
+    }
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
