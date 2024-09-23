@@ -71,7 +71,6 @@ INSTALLED_APPS = [
     "portfolio",
     "contact",
     "pages",
-    "django-extensions",
 ]
 
 SITE_ID = 1
@@ -180,7 +179,7 @@ USE_TZ = True
 
 # Static files & Media
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (str(BASE_DIR.joinpath("static")))
+STATICFILES_DIRS = (str(BASE_DIR.joinpath("static")),)
 STATIC_ROOT = str(BASE_DIR.joinpath("staticfiles"))
 MEDIA_ROOT = str(BASE_DIR.joinpath("media"))
 
