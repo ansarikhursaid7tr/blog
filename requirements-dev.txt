@@ -91,7 +91,7 @@ platformdirs==3.0.0
     #   virtualenv
 pre-commit==3.0.4
     # via -r requirements-dev.in
-psycopg2-binary
+psycopg2-binary==2.9.5
     # via -r requirements.txt
 pycodestyle==2.10.0
     # via flake8
