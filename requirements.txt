@@ -37,11 +37,11 @@ jmespath==1.0.1
     #   botocore
 markdown==3.4.1
     # via -r requirements.in
-pillow==9.4.0
+pillow
     # via
     #   -r requirements.in
     #   django-simple-captcha
-psycopg2-binary==2.9.5
+psycopg2-binary
     # via -r requirements.in
 pygments==2.14.0
     # via -r requirements.in
