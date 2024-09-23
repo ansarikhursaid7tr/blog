@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     "portfolio",
     "contact",
     "pages",
+    "django-extensions",
 ]
 
 SITE_ID = 1
