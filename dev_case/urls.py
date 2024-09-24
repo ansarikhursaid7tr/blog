@@ -33,9 +33,9 @@ urlpatterns = [
     path("captcha/", include("captcha.urls")),
 ]
 
-admin.site.site_header = "Dev-Case Admin"  # "Django Administration"
-admin.site.index_title = "Dev-Case Site administration "  # "Site administration".
-admin.site.site_title = "DevCase-Admin"  # "Django site admin"
+admin.site.site_header = "NightOwl Admin"  # "Django Administration"
+admin.site.index_title = "NightOwl Site administration "  # "Site administration".
+admin.site.site_title = "NightOwl-Admin"  # "Django site admin"
 
 if settings.DEBUG:
     import debug_toolbar
