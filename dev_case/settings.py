@@ -219,14 +219,14 @@ if DEBUG:
     ]
 
     #hack for Debug-Toolbar with docker
-    import socket
+    #import socket
 
-    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
-    INTERNAL_IPS += [".".join(ip.split(".")[:-1] + ["1"]) for ip in ips]
+    #hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+    #INTERNAL_IPS += [".".join(ip.split(".")[:-1] + ["1"]) for ip in ips]
 
-    DEBUG_TOOLBAR_CONFIG = {
-        'SHOW_TOOLBAR_CALLBACK': lambda request: False,
-    }
+    #DEBUG_TOOLBAR_CONFIG = {
+    #    'SHOW_TOOLBAR_CALLBACK': lambda request: False,
+    #}
 
 
 # Enables security-settings for Production
