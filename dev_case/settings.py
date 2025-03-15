@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from urllib.parse import urlparse
 
 from django.core.management.utils import get_random_secret_key
 
@@ -133,16 +134,18 @@ if USE_PLAUSIBLE_ANALYTICS:
 
 WSGI_APPLICATION = "dev_case.wsgi.application"
 
+# Replace the DATABASES section of your settings.py with this
+tmpPostgres = urlparse(DATABASE_URL)
 
 if DATABASE_URL:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': env('POSTGRES_DATABASE'),
-            'USER': env('POSTGRES_USER'),
-            'PASSWORD': env('POSTGRES_PASSWORD'),
-            'HOST': env('POSTGRES_HOST'),
-            'PORT': '5432',  # or your PostgreSQL port
+            'NAME': tmpPostgres.path.replace('/', ''),
+            'USER': tmpPostgres.username,
+            'PASSWORD': tmpPostgres.password,
+            'HOST': tmpPostgres.hostname,
+            'PORT': 5432,
         }
     }
 else:
@@ -219,14 +222,14 @@ if DEBUG:
     ]
 
     #hack for Debug-Toolbar with docker
-    import socket
+    #import socket
 
-    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
-    INTERNAL_IPS += [".".join(ip.split(".")[:-1] + ["1"]) for ip in ips]
+    #hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+    #INTERNAL_IPS += [".".join(ip.split(".")[:-1] + ["1"]) for ip in ips]
 
-    DEBUG_TOOLBAR_CONFIG = {
-        'SHOW_TOOLBAR_CALLBACK': lambda request: False,
-    }
+    #DEBUG_TOOLBAR_CONFIG = {
+    #    'SHOW_TOOLBAR_CALLBACK': lambda request: False,
+    #}
 
 
 # Enables security-settings for Production
