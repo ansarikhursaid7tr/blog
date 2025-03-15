@@ -1,6 +1,5 @@
 import os
 from pathlib import Path
-from urllib.parse import urlparse
 
 from django.core.management.utils import get_random_secret_key
 
@@ -134,18 +133,16 @@ if USE_PLAUSIBLE_ANALYTICS:
 
 WSGI_APPLICATION = "dev_case.wsgi.application"
 
-# Replace the DATABASES section of your settings.py with this
-tmpPostgres = urlparse(DATABASE_URL)
 
 if DATABASE_URL:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': tmpPostgres.path.replace('/', ''),
-            'USER': tmpPostgres.username,
-            'PASSWORD': tmpPostgres.password,
-            'HOST': tmpPostgres.hostname,
-            'PORT': 5432,
+            'NAME': env('POSTGRES_DATABASE'),
+            'USER': env('POSTGRES_USER'),
+            'PASSWORD': env('POSTGRES_PASSWORD'),
+            'HOST': env('POSTGRES_HOST'),
+            'PORT': '5432',  # or your PostgreSQL port
         }
     }
 else:
