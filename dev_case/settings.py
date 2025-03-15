@@ -218,7 +218,7 @@ if DEBUG:
         "localhost",
     ]
 
-     hack for Debug-Toolbar with docker
+    #hack for Debug-Toolbar with docker
     import socket
 
     hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
