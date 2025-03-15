@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
+from cloudinary.models import CloudinaryField  # Import CloudinaryField
 
 
 class TechStack(models.Model):
@@ -58,17 +59,17 @@ class Project(models.Model):
         unique=True,
         blank=False,
     )
-    image = models.ImageField(
-        upload_to="projects/",
-        verbose_name="Image",
-        help_text="Recommended resolution: 1040px * 585px",
+    image = CloudinaryField(
+        'image',
+        folder="projects/",  # Optional: specify a folder in Cloudinary
+        transformation={'quality': 'auto:good'},  # Optional: set quality
         blank=False,
         null=True,
     )
-    thumbnail = models.ImageField(
-        upload_to="projects/",
-        verbose_name="Thumbnail",
-        help_text="Recommended resolution: 150px * 150px",
+    thumbnail = CloudinaryField(
+        'image',
+        folder="projects/thumbnails/",  # Optional: specify a folder in Cloudinary
+        transformation={'quality': 'auto:good'},  # Optional: set quality
         blank=False,
         null=True,
     )

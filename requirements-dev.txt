@@ -125,6 +125,7 @@ urllib3==1.26.14
 virtualenv==20.19.0
     # via pre-commit
 dj-database-url
+cloudinary
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

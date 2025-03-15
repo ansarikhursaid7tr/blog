@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
-
 from solo.models import SingletonModel
+from cloudinary.models import CloudinaryField  # Import CloudinaryField
 
 
 class Page(models.Model):
@@ -76,13 +76,16 @@ class AboutSiteConfig(SingletonModel):
         default="Lorem ipsum dolor sit amet, consectetur",
         blank=False,
     )
-    image = models.ImageField(
-        help_text="Recommended resolution: 1:1 - Example: 500px * 500px",
+    image = CloudinaryField(
+        'image',
+        folder="about/",  # Optional: specify a folder in Cloudinary
+        transformation={'quality': 'auto:good'},  # Optional: set quality
         blank=False,
     )
-    resume = models.FileField(
-        upload_to="resume/",
-        help_text="Optionally, recommended format: PDF",
+    resume = CloudinaryField(
+        'raw', # Use 'raw' for non-image files like PDF
+        resource_type='raw',
+        folder="resume/",  # Optional: specify a folder in Cloudinary
         blank=True,
         null=True,
     )

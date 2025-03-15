@@ -61,14 +61,14 @@
 
   <hr class="long-line" />
 
-  {% if about_config.resume %}
-  <a class="link-bold flex margin-top" href="{{ about_config.resume.url }}">
+{% if about_config.resume %}
+  <a class="link-bold flex margin-top" href="{{ about_config.resume.url }}" download>
     <svg class="icon icon-arrow-right" aria-hidden="true" focusable="false">
       <use xlink:href="#icon-arrow-right"></use>
     </svg>
     Resume
   </a>
-  {% endif %}
+{% endif %}
 
   <!-- Markdown Content -->
   <section class="small-container">

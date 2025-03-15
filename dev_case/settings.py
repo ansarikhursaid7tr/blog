@@ -3,6 +3,11 @@ from pathlib import Path
 
 from django.core.management.utils import get_random_secret_key
 
+#Cloudinary imports
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 import environ
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -71,6 +76,7 @@ INSTALLED_APPS = [
     "portfolio",
     "contact",
     "pages",
+    'cloudinary',
 ]
 
 SITE_ID = 1
@@ -212,7 +218,7 @@ if DEBUG:
         "localhost",
     ]
 
-    # hack for Debug-Toolbar with docker
+     hack for Debug-Toolbar with docker
     import socket
 
     hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
@@ -262,3 +268,11 @@ if USE_EMAIL_SMTP:
     EMAIL_USE_SSL = env.bool("EMAIL_USE_SSL", default=False)
     EMAIL_PORT = env.int("EMAIL_PORT", default=587)
     DEFAULT_FROM_EMAIL = env.str("DEFAULT_FROM_EMAIL", default="")
+
+
+#Cloudinary Configs
+cloudinary.config(
+    cloud_name=env.str('CLOUD_NAME'),
+    api_key=env.str('CLOUDINARY_API_KEY'),
+    api_secret=env.str('CLOUDINARY_API_SECRET'),
+)

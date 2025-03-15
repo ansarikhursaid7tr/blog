@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
+from cloudinary.models import CloudinaryField  # Import CloudinaryField
 
 
 class Category(models.Model):
@@ -46,10 +47,10 @@ class BlogPost(models.Model):
         blank=False,
         unique=True,
     )
-    image = models.ImageField(
-        upload_to="blog-posts/",
-        verbose_name="Image",
-        help_text="Recommended resolution: 1040px * 585px",
+    image = CloudinaryField(
+        'image',
+        folder="blog-posts/",  # Optional: specify a folder in Cloudinary
+        transformation={'quality': 'auto:good'},  # Optional: set quality
         blank=True,
         null=True,
     )

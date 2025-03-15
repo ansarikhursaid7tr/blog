@@ -1,6 +1,6 @@
 from django.db import models
-
 from solo.models import SingletonModel
+from cloudinary.models import CloudinaryField  # Import CloudinaryField
 
 ABOUT_EXAMPLE_CONTENT = """
 
@@ -24,7 +24,13 @@ class MainConfig(SingletonModel):
         max_length=255,
         default="dev-case.com",
     )
-    favicon = models.ImageField()
+    favicon = CloudinaryField(
+        'image',
+        folder="favicons/",  # Optional: specify a folder in Cloudinary
+        transformation={'quality': 'auto:good'},  # Optional: set quality
+        blank=True,
+        null=True,
+    )
     copyright_footer = models.CharField(
         max_length=255,
         default="Your Name © 2022",
