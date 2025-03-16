@@ -56,6 +56,7 @@ sqlparse==0.4.3
 urllib3==1.26.14
     # via botocore
 django-extensions
+cloudinary
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
