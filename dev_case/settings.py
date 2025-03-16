@@ -2,10 +2,6 @@ import os
 from pathlib import Path
 
 from django.core.management.utils import get_random_secret_key
-
-#Cloudinary imports
-import cloudinary
-import cloudinary.uploader
 import cloudinary.api
 
 import environ
