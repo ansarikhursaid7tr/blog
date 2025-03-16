@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sites",
     "django.contrib.sitemaps",
+    'cloudinary',
     "solo",
     "captcha",
     "config",
@@ -72,7 +73,6 @@ INSTALLED_APPS = [
     "portfolio",
     "contact",
     "pages",
-    'cloudinary',
 ]
 
 SITE_ID = 1
@@ -272,3 +272,6 @@ cloudinary.config(
     api_key=env.str('CLOUDINARY_API_KEY'),
     api_secret=env.str('CLOUDINARY_API_SECRET'),
 )
+
+# Default file storage
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
