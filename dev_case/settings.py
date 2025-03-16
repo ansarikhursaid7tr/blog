@@ -24,6 +24,7 @@ ALLOWED_HOSTS = env.list(
         "localhost",
         ".vercel.app",
         ".now.sh",
+        "ansarikhursaid.com.np",
     ],
 )
 
