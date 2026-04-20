@@ -9,7 +9,7 @@ from contact.views import contact
 from .feeds import BlogFeed
 from .settings import ADMIN_LOCATION
 from .sitemaps import BlogPostSitemap, PageSitemap, ProjectSitemap, StaticSitemap
-from .views import about, home, certifications, experience, robots_txt, search
+from .views import about, certifications, experience, home, robots_txt, search
 
 sitemaps = {
     "blog": BlogPostSitemap,

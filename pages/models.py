@@ -1,7 +1,8 @@
 from django.db import models
 from django.urls import reverse
-from solo.models import SingletonModel
+
 from cloudinary.models import CloudinaryField  # Import CloudinaryField
+from solo.models import SingletonModel
 
 
 class Page(models.Model):
@@ -83,7 +84,7 @@ class AboutSiteConfig(SingletonModel):
         blank=False,
     )
     resume = CloudinaryField(
-        'raw', # Use 'raw' for non-image files like PDF
+        'raw',  # Use 'raw' for non-image files like PDF
         resource_type='raw',
         folder="resume/",  # Optional: specify a folder in Cloudinary
         blank=True,

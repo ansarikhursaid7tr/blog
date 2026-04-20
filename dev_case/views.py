@@ -2,7 +2,7 @@ from django.db.models import Q
 from django.shortcuts import render
 
 from blog.models import BlogPost
-from config.models import SocialAccountsConfig, MainConfig
+from config.models import MainConfig, SocialAccountsConfig
 from pages.models import AboutSiteConfig, IndexSiteConfig
 from portfolio.models import Project, Certification, Experience
 
@@ -36,6 +36,7 @@ def about(request):
     }
     return render(request, "about.html", context=context)
 
+
 def certifications(request):
     certifications = Certification.objects.all().order_by("-date")
     social_accounts = SocialAccountsConfig.get_solo()
@@ -44,6 +45,7 @@ def certifications(request):
         "social_accounts": social_accounts,
     }
     return render(request, "certifications.html", context=context)
+
 
 def experience(request):
     experiences = Experience.objects.all().order_by("-start_date")

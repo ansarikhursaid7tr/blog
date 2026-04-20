@@ -1,10 +1,9 @@
 import os
 from pathlib import Path
 
-from django.core.management.utils import get_random_secret_key
 import cloudinary.api
-
 import environ
+from django.core.management.utils import get_random_secret_key
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -215,15 +214,15 @@ if DEBUG:
         "localhost",
     ]
 
-    #hack for Debug-Toolbar with docker
-    #import socket
+    # hack for Debug-Toolbar with docker
+    # import socket
 
-    #hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
-    #INTERNAL_IPS += [".".join(ip.split(".")[:-1] + ["1"]) for ip in ips]
+    # hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+    # INTERNAL_IPS += [".".join(ip.split(".")[:-1] + ["1"]) for ip in ips]
 
-    #DEBUG_TOOLBAR_CONFIG = {
+    # DEBUG_TOOLBAR_CONFIG = {
     #    'SHOW_TOOLBAR_CALLBACK': lambda request: False,
-    #}
+    # }
 
 
 # Enables security-settings for Production
@@ -267,7 +266,7 @@ if USE_EMAIL_SMTP:
     DEFAULT_FROM_EMAIL = env.str("DEFAULT_FROM_EMAIL", default="")
 
 
-#Cloudinary Configs
+# Cloudinary Configs
 cloudinary.config(
     cloud_name=env.str('CLOUD_NAME'),
     api_key=env.str('CLOUDINARY_API_KEY'),

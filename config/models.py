@@ -1,6 +1,7 @@
 from django.db import models
-from solo.models import SingletonModel
+
 from cloudinary.models import CloudinaryField  # Import CloudinaryField
+from solo.models import SingletonModel
 
 ABOUT_EXAMPLE_CONTENT = """
 
