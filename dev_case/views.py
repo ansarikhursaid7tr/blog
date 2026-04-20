@@ -2,7 +2,7 @@ from django.db.models import Q
 from django.shortcuts import render
 
 from blog.models import BlogPost
-from config.models import SocialAccountsConfig
+from config.models import SocialAccountsConfig, MainConfig
 from pages.models import AboutSiteConfig, IndexSiteConfig
 from portfolio.models import Project
 
@@ -13,11 +13,13 @@ from .sitemaps import get_sitemap_absolute_url
 def home(request):
     index_config = IndexSiteConfig.get_solo()
     social_accounts = SocialAccountsConfig.get_solo()
+    main_config = MainConfig.get_solo()
     posts = BlogPost.objects.prefetch_related("category").filter(status=1)[:3]
     projects = Project.objects.filter(status=1)
     context = {
         "index_config": index_config,
         "social_accounts": social_accounts,
+        "main_config": main_config,
         "posts": posts,
         "projects": projects,
     }
@@ -32,6 +34,15 @@ def about(request):
         "social_accounts": social_accounts,
     }
     return render(request, "about.html", context=context)
+
+def certifications(request):
+    about_config = AboutSiteConfig.get_solo()
+    social_accounts = SocialAccountsConfig.get_solo()
+    context = {
+        "about_config": about_config,
+        "social_accounts": social_accounts,
+    }
+    return render(request, "certifications.html", context=context)
 
 
 def search(request):

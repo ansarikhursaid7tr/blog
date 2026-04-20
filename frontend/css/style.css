@@ -19,6 +19,7 @@
 @import url("components/project_card.css");
 @import url("components/text_card.css");
 @import url("components/buttons.css");
+@import url("components/hero_terminal.css");
 
 /* Pages */
 @import url("pages/about.css");

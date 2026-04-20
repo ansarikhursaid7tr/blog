@@ -1,7 +1,25 @@
 :root {
-  --bg-color: #4d4646;
-  --font-color: #f5eaea;
-  --primary-color: #7fcd91;
-  --secondary-color: #5b5656;
-  --error-color: #c17474;
+  /* Dark Mode (Default) - Dracula Inspired */
+  --bg-color: #1e1e2e;
+  --font-color: #cdd6f4;
+  --primary-color: #89b4fa;
+  --secondary-color: #181825;
+  --accent-color: #cba6f7;
+  --success-color: #a6e3a1;
+  --error-color: #f38ba8;
+  --card-border: #313244;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="light"] {
+  /* Light Mode - Sleek Github Light */
+  --bg-color: #f8f9fa;
+  --font-color: #24292e;
+  --primary-color: #0366d6;
+  --secondary-color: #ffffff;
+  --accent-color: #6f42c1;
+  --success-color: #28a745;
+  --error-color: #cb2431;
+  --card-border: #e1e4e8;
+  --shadow-color: rgba(27, 31, 35, 0.05);
 }

@@ -9,7 +9,7 @@ from contact.views import contact
 from .feeds import BlogFeed
 from .settings import ADMIN_LOCATION
 from .sitemaps import BlogPostSitemap, PageSitemap, ProjectSitemap, StaticSitemap
-from .views import about, home, robots_txt, search
+from .views import about, home, certifications, robots_txt, search
 
 sitemaps = {
     "blog": BlogPostSitemap,
@@ -22,6 +22,7 @@ urlpatterns = [
     path(ADMIN_LOCATION, admin.site.urls),
     path("", home, name="home"),
     path("about/", about, name="about"),
+    path("certifications/", certifications, name="certifications"),
     path("contact/", contact, name="contact"),
     path("search/", search, name="search"),
     path("blog/", include("blog.urls")),

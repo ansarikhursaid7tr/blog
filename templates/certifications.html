@@ -1,0 +1,16 @@
+{% extends "base.html"%}
+{% load static %}
+{% load markdown_tags %}
+{% block title%} - Certifications{% endblock title %}
+{% block content %}
+<main>
+  <section class="small-container margin-top">
+    <h1 class="main-headline text-left" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 700;">Certifications</h1>
+    <div class="text-card margin-top" style="background: transparent;">
+      <div class="md-content">
+        <p class="text-card__text" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">{{ about_config.markdown_content | markdown | safe }}</p>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock content %}
