@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Project, TechStack, Tool, Certification, Experience
+from .models import Certification, Experience, Project, TechStack, Tool
 
 
 @admin.register(Project)

@@ -35,7 +35,7 @@ def blog_detail(request, slug):
             if settings.EMAIL_NOTIFICATION:
                 send_mail(
                     "DevCase: blog comment received",
-                    f"Message:{message} | Author: {author}",
+                    f"Message: {message} | Author: {author}",
                     settings.DEFAULT_FROM_EMAIL,
                     [settings.EMAIL_RECIPIENT],
                     fail_silently=False,
