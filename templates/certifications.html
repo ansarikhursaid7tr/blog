@@ -3,14 +3,27 @@
 {% load markdown_tags %}
 {% block title%} - Certifications{% endblock title %}
 {% block content %}
-<main>
-  <section class="small-container margin-top">
-    <h1 class="main-headline text-left" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 700;">Certifications</h1>
-    <div class="text-card margin-top" style="background: transparent;">
-      <div class="md-content">
-        <p class="text-card__text" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">{{ about_config.markdown_content | markdown | safe }}</p>
+<main class="margin-top">
+  <div class="small-container">
+    <h1 class="main-headline text-center"><span style="color: var(--primary-color); opacity: 0.8;">>ls/</span>Certifications</h1>
+    
+    <div class="experience-list margin-top">
+      {% for cert in certifications %}
+      <div class="article-card margin-top" style="padding: 1.5rem; cursor: default;">
+        <h2 class="article-card__header" style="margin: 0; color: var(--primary-color);">{{ cert.name }}</h2>
+        <div class="experience-item__date" style="margin: 0.5rem 0 1rem; opacity: 0.7; font-family: 'Fira Code', monospace; font-size: 0.85rem;">
+          {{ cert.date|date:"F Y" }} <span style="margin: 0 10px; opacity: 0.3;">|</span> {{ cert.issuer }}
+        </div>
+        {% if cert.url %}
+        <div style="margin-top: 1rem;">
+          <a href="{{ cert.url }}" class="link" target="_blank" style="font-weight: 600; font-size: 0.9rem;">Verify Credentials &rarr;</a>
+        </div>
+        {% endif %}
       </div>
+      {% empty %}
+      <p class="lead">No certifications listed yet. Check back soon!</p>
+      {% endfor %}
     </div>
-  </section>
+  </div>
 </main>
 {% endblock content %}

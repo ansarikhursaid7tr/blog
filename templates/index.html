@@ -1,5 +1,6 @@
 {% extends "base.html"%}
 {% load static %}
+{% load markdown_tags %}
 {% block title%} - Home{% endblock title %}
 {% block meta %}
 <meta property=og:title content="{{ main_config.site_name }}">
@@ -97,7 +98,7 @@ $ contact
             <a class="link" href="{{ project.get_absolute_url }}">{{ project.title }}</a>
           </h3>
           <p class="project-card__text">{{ project.subtitle }}</p>
-          <ul class="projetc-card__tags">
+          <ul class="project-card__tags">
             <li>{{ project.display_techstack }}</li>
           </ul>
         </div>

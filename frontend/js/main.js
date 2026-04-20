@@ -56,6 +56,24 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initialize Sequence
     setTimeout(typeJson, 300);
   }
+
+  // ── Mobile Menu Toggle ──
+  const menuToggle = document.getElementById("menu-toggle");
+  const menuClose = document.getElementById("menu-close");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuOverlay = document.getElementById("menu-overlay");
+
+  if (menuToggle && mobileMenu && menuOverlay) {
+    const toggleMenu = () => {
+      mobileMenu.classList.toggle("active");
+      menuOverlay.classList.toggle("active");
+      document.body.classList.toggle("no-scroll");
+    };
+
+    menuToggle.addEventListener("click", toggleMenu);
+    if (menuClose) menuClose.addEventListener("click", toggleMenu);
+    menuOverlay.addEventListener("click", toggleMenu);
+  }
 });
 
 export { toggleCommentForm };

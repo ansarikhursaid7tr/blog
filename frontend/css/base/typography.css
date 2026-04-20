@@ -81,4 +81,7 @@ p a:hover {
   color: var(--font-color);
   font-weight: 400;
   opacity: 0.9;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }

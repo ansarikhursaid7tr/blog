@@ -122,3 +122,35 @@ class Project(models.Model):
 
     def display_tools(self):
         return ", ".join([tool.name for tool in self.tools.all()])
+
+
+class Certification(models.Model):
+    name = models.CharField(max_length=255)
+    issuer = models.CharField(max_length=255)
+    date = models.DateField()
+    url = models.URLField(blank=True, null=True)
+
+    class Meta:
+        verbose_name = "Certification"
+        verbose_name_plural = "Certifications"
+        ordering = ["-date"]
+
+    def __str__(self):
+        return f"{self.name} - {self.issuer}"
+
+
+class Experience(models.Model):
+    company = models.CharField(max_length=255)
+    position = models.CharField(max_length=255)
+    start_date = models.DateField()
+    end_date = models.DateField(blank=True, null=True)
+    description = models.TextField(help_text="Markdown supported.")
+    is_current = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = "Experience"
+        verbose_name_plural = "Experiences"
+        ordering = ["-start_date"]
+
+    def __str__(self):
+        return f"{self.position} at {self.company}"

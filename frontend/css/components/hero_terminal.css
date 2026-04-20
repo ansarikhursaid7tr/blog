@@ -42,6 +42,11 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-weight: 500;
   margin-left: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  flex: 1;
 }
 
 .hero-terminal__body {
@@ -98,6 +103,19 @@
   }
 }
 
+@media (max-width: 800px) {
+  .hero-terminal {
+    width: 100%;
+    max-width: 100%;
+  }
+  .hero-terminal__body {
+    padding: 1.2rem;
+  }
+  .hero-terminal__line, .static-json pre {
+    font-size: 0.85rem;
+  }
+}
+
 .static-json pre {
   margin: 0;
   padding: 0;
@@ -106,6 +124,6 @@
   font-family: "Fira Code", monospace;
   color: var(--font-color);
   font-size: 0.95rem;
-  overflow: hidden;
+  overflow-x: auto;
   line-height: 1.6;
 }

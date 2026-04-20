@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Project, TechStack, Tool
+from .models import Project, TechStack, Tool, Certification, Experience
 
 
 @admin.register(Project)
@@ -20,3 +20,17 @@ class TechStackAdmin(admin.ModelAdmin):
 @admin.register(Tool)
 class ToolAdmin(admin.ModelAdmin):
     list_display = ("name",)
+
+
+@admin.register(Certification)
+class CertificationAdmin(admin.ModelAdmin):
+    list_display = ("name", "issuer", "date")
+    list_filter = ("issuer", "date")
+    search_fields = ("name", "issuer")
+
+
+@admin.register(Experience)
+class ExperienceAdmin(admin.ModelAdmin):
+    list_display = ("position", "company", "start_date", "end_date", "is_current")
+    list_filter = ("company", "start_date", "is_current")
+    search_fields = ("position", "company")

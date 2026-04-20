@@ -4,7 +4,8 @@ from django.shortcuts import render
 from blog.models import BlogPost
 from config.models import SocialAccountsConfig, MainConfig
 from pages.models import AboutSiteConfig, IndexSiteConfig
-from portfolio.models import Project
+from portfolio.models import Project, Certification, Experience
+
 
 from .settings import ROBOTS_DISALLOW
 from .sitemaps import get_sitemap_absolute_url
@@ -36,13 +37,22 @@ def about(request):
     return render(request, "about.html", context=context)
 
 def certifications(request):
-    about_config = AboutSiteConfig.get_solo()
+    certifications = Certification.objects.all().order_by("-date")
     social_accounts = SocialAccountsConfig.get_solo()
     context = {
-        "about_config": about_config,
+        "certifications": certifications,
         "social_accounts": social_accounts,
     }
     return render(request, "certifications.html", context=context)
+
+def experience(request):
+    experiences = Experience.objects.all().order_by("-start_date")
+    social_accounts = SocialAccountsConfig.get_solo()
+    context = {
+        "experiences": experiences,
+        "social_accounts": social_accounts,
+    }
+    return render(request, "experience.html", context=context)
 
 
 def search(request):

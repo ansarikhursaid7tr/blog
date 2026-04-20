@@ -22,6 +22,8 @@
 .article-card__header {
   font-size: 1.4rem;
   margin: 1.2rem 1.2rem 0rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .article-card__link::before {
@@ -38,4 +40,15 @@
   font-family: "Fira Code", monospace;
   font-size: 0.85rem;
   opacity: 0.7;
+}
+
+@media (max-width: 600px) {
+  .article-card__header {
+    font-size: 1.15rem;
+    margin: 1rem 1rem 0rem;
+  }
+  .article-card__date {
+    font-size: 0.75rem;
+    margin: 0.4rem 1rem 1rem;
+  }
 }
