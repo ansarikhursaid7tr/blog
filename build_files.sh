@@ -1,8 +1,15 @@
 #!/bin/bash
 
+# Exit on any error
+set -e
+
+echo "Creating virtual environment..."
+python3 -m venv venv
+source venv/bin/activate
+
 echo "Building project packages..."
 python3 -m pip install --upgrade pip
-python3 -m pip install -r requirements-dev.txt
+python3 -m pip install -r requirements.txt
 
 echo "Building frontend assets..."
 npm install
