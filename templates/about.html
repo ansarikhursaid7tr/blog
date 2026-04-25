@@ -4,11 +4,23 @@
 {% block title%} - About{% endblock title %}
 {% block meta %}
 {% if about_config.seo %}
-  <meta name="description" content="{{ about_config.seo }}">
+<meta name="description" content="{{ about_config.seo }}">
 {% endif %}
 {% endblock meta %}
+{% block styles %}
+<style>
+  .about-skills-section { margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--card-border); }
+  .about-skills-row { display: flex; flex-direction: column; gap: 1.5rem; }
+  .about-skills-group { display: flex; align-items: baseline; gap: 1rem; }
+  .about-skills-label { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--font-color); margin: 0; white-space: nowrap; min-width: 90px; }
+  .about-skills-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .about-skill-pill { display: inline-flex; align-items: center; padding: 0.3rem 0.75rem; background: var(--primary-color); border-radius: 4px; font-size: 0.8rem; font-weight: 500; color: var(--bg-color); cursor: default; white-space: nowrap; opacity: 0.85; transition: opacity 0.2s ease, transform 0.15s ease; }
+  .about-skill-pill:hover { opacity: 1; transform: translateY(-1px); }
+  @media (max-width: 768px) { .about-skills-group { flex-direction: column; gap: 0.5rem; } .about-skills-label { min-width: unset; } }
+</style>
+{% endblock styles %}
 {% block content %}
-{% include "icons.html" %} {% comment %} TODO: include only used SVG's {% endcomment %}
+{% include "icons.html" %}
 <main>
   <!-- Hero -->
   <section class="small-container about-hero margin-top">
@@ -16,7 +28,7 @@
     <div class="profile-wrapper">
       {% if about_config.image %}
       <div class="profile margin-top">
-        <img class="profile__image" src="{{ about_config.image.url }}" alt="me" />
+        <img class="profile__image" src="{{ about_config.image.url }}" alt="Profile photo" />
       </div>
       {% endif %}
     </div>
@@ -26,58 +38,52 @@
     </div>
     {% endspaceless %}
   </section>
+  <br />
 
-  <div class="small-container margin-top">
-    <p class="lead" align="justify">{{ about_config.intro_text }}</p>
-  </div>
-
-  <!-- Skills -->
-  <section class="small-container skills">
-    <div class="skills__wrapper">
-      <h4>Skills</h4>
-      <ul>
-        {% for skill in about_config.skills_as_list %}
-        <li>{{ skill }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-    <div class="skills__wrapper">
-      <h4>Tools</h4>
-      <ul>
-        {% for tool in about_config.tools_as_list %}
-        <li>{{ tool }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-    <div class="skills__wrapper">
-      <h4>Interests</h4>
-      <ul>
-        {% for interesst in about_config.interessts_as_list %}
-        <li>{{ interesst }}</li>
-        {% endfor %}
-      </ul>
+  <!-- Two-Column Content: Intro + Markdown -->
+  <section class="small-container">
+    <div class="about-content-grid">
+      <div class="about-content-grid__section">
+        <p class="lead" style="text-align: justify;">{{ about_config.intro_text }}</p>
+      </div>
+      {% if about_config.markdown_content %}
+      <div class="about-content-grid__section">
+        <div class="md-content">
+          {{ about_config.markdown_content | markdown | safe }}
+        </div>
+      </div>
+      {% endif %}
     </div>
   </section>
 
-  <hr class="long-line" />
-
-{% if about_config.resume %}
-  <a class="link-bold flex margin-top" href="{{ about_config.resume.url }}" download>
-    <svg class="icon icon-arrow-right" aria-hidden="true" focusable="false">
-      <use xlink:href="#icon-arrow-right"></use>
-    </svg>
-    Resume
-  </a>
-{% endif %}
-
-  <!-- Markdown Content -->
-  <section class="small-container">
-    <div class="text-card">
-      <div class="md-content">
-        <p class="text-card__text">{{ about_config.markdown_content | markdown | safe }}</p>
+  <!-- Skills / Tools / Interests -->
+  <section class="small-container about-skills-section">
+    <div class="about-skills-row">
+      <div class="about-skills-group">
+        <h3 class="about-skills-label">Skills</h3>
+        <div class="about-skills-tags">
+          {% for skill in about_config.skills_as_list %}
+          <span class="about-skill-pill">{{ skill }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="about-skills-group">
+        <h3 class="about-skills-label">Tools</h3>
+        <div class="about-skills-tags">
+          {% for tool in about_config.tools_as_list %}
+          <span class="about-skill-pill">{{ tool }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="about-skills-group">
+        <h3 class="about-skills-label">Interests</h3>
+        <div class="about-skills-tags">
+          {% for interesst in about_config.interessts_as_list %}
+          <span class="about-skill-pill">{{ interesst }}</span>
+          {% endfor %}
+        </div>
       </div>
     </div>
-    <hr class="short-line" />
   </section>
 </main>
 {% endblock content %}
