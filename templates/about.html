@@ -40,14 +40,14 @@
   </section>
   <br />
 
-  <!-- Two-Column Content: Intro + Markdown -->
+  <!-- Content: Intro + Markdown -->
   <section class="small-container">
-    <div class="about-content-grid">
-      <div class="about-content-grid__section">
+    <div class="about-content-grid" style="display: flex; flex-direction: column; gap: 2rem; margin-top: 2rem;">
+      <div>
         <p class="lead" style="text-align: justify;">{{ about_config.intro_text }}</p>
       </div>
       {% if about_config.markdown_content %}
-      <div class="about-content-grid__section">
+      <div>
         <div class="md-content">
           {{ about_config.markdown_content | markdown | safe }}
         </div>
