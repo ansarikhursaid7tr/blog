@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Certification, Experience, Project, TechStack, Tool
+from .models import Certification, Experience, Project, Publication, TechStack, Tool
 
 
 @admin.register(Project)
@@ -34,3 +34,10 @@ class ExperienceAdmin(admin.ModelAdmin):
     list_display = ("position", "company", "start_date", "end_date", "is_current")
     list_filter = ("company", "start_date", "is_current")
     search_fields = ("position", "company")
+
+
+@admin.register(Publication)
+class PublicationAdmin(admin.ModelAdmin):
+    list_display = ("title", "journal", "date")
+    list_filter = ("journal", "date")
+    search_fields = ("title", "journal", "doi")

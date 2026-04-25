@@ -155,3 +155,39 @@ class Experience(models.Model):
 
     def __str__(self):
         return f"{self.position} at {self.company}"
+
+
+class Publication(models.Model):
+    title = models.CharField(max_length=500)
+    journal = models.CharField(
+        max_length=255,
+        verbose_name="Journal / Conference",
+        help_text="Name of the journal or conference.",
+    )
+    date = models.DateField(verbose_name="Publication Date")
+    abstract = models.TextField(
+        blank=True,
+        null=True,
+        help_text="Brief abstract or summary of the paper.",
+    )
+    doi = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
+        verbose_name="DOI",
+        help_text="Digital Object Identifier (e.g. 10.1234/example).",
+    )
+    url = models.URLField(
+        blank=True,
+        null=True,
+        verbose_name="Paper URL",
+        help_text="Link to the published paper.",
+    )
+
+    class Meta:
+        verbose_name = "Publication"
+        verbose_name_plural = "Publications"
+        ordering = ["-date"]
+
+    def __str__(self):
+        return f"{self.title} - {self.journal}"
