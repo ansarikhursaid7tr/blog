@@ -27,9 +27,7 @@
   <header>
     <div class="navbar">
       <div class="container flex">
-        <h1>
-          <a class="logo" href="{% url 'home' %}">{{ main_config.site_name }}</a>
-        </h1>
+          <a class="logo" href="{% url 'home' %}"><span style="color: var(--primary-color);">$</span> {% block page_id %}root{% endblock page_id %}@iamgroot_jr</a>
         <nav class="desktop-nav">
           <ul class="nav-links">
             <li><a href="{% url 'home' %}">Home</a></li>
@@ -65,7 +63,7 @@
   <!-- Mobile Nav Overlay -->
   <div id="mobile-menu" class="mobile-menu">
     <div class="mobile-menu__header">
-      <h2 class="logo">{{ main_config.site_name }}</h2>
+      <a href="{% url 'home' %}" style="text-decoration: none;"><h2 class="logo"><span style="color: var(--primary-color);">$</span> {% block mobile_page_id %}{% block page_id2 %}root{% endblock page_id2 %}{% endblock %}@iamgroot_jr</h2></a>
       <button id="menu-close" class="menu-button" aria-label="Close Menu">
         <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
           <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>

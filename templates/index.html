@@ -1,4 +1,6 @@
 {% extends "base.html"%}
+{% block page_id %}root{% endblock %}{% block page_id2 %}root{% endblock %}
+
 {% load static %}
 {% load markdown_tags %}
 {% block title%} - Home{% endblock title %}
@@ -15,36 +17,20 @@
 <!-- Hero -->
 <section class="small-container margin-top">
   <div class="hero-layout">
-    <div class="hero-content">
-      <p class="lead" align="justify">
-        {{ index_config.intro_text }}
-      </p>
-      <a class="link" href="{% url 'about' %}">
-        <svg class="icon icon-arrow-right" aria-hidden="true" focusable="false">
-          <use xlink:href="#icon-arrow-right"></use>
-        </svg>
-        About Me
-      </a>
-      {% spaceless %}
-      <div class="padding-top">
-        {% include '_social_accounts.html' %}
-      </div>
-      {% endspaceless %}
-    </div>
-
-    <!-- Hero Terminal Widget -->
-    <div class="hero-terminal">
-      <div class="hero-terminal__bar">
-        <span class="hero-terminal__dot hero-terminal__dot--red"></span>
-        <span class="hero-terminal__dot hero-terminal__dot--yellow"></span>
-        <span class="hero-terminal__dot hero-terminal__dot--green"></span>
-        <span class="hero-terminal__bar-title">~/khursaid/cyber/server ► tail -f skills.log</span>
-      </div>
-      <div class="hero-terminal__body">
-        <div class="hero-terminal__line static-json">
-          <pre id="animated-json"></pre>
-          <pre id="json-hidden"
-            style="display:none;">$ whoami
+    <div class="hero-left">
+      <!-- Hero Terminal Widget -->
+      <div class="hero-terminal">
+        <div class="hero-terminal__bar">
+          <span class="hero-terminal__dot hero-terminal__dot--red"></span>
+          <span class="hero-terminal__dot hero-terminal__dot--yellow"></span>
+          <span class="hero-terminal__dot hero-terminal__dot--green"></span>
+          <span class="hero-terminal__bar-title">~/khursaid/cyber/server ► tail -f skills.log</span>
+        </div>
+        <div class="hero-terminal__body">
+          <div class="hero-terminal__line static-json">
+            <pre id="animated-json"></pre>
+            <pre id="json-hidden"
+              style="display:none;">$ whoami
 
 > {{ index_config.headline|default:"Hi, I'm Khursaid Ansari" }}
 
@@ -52,11 +38,31 @@ $ contact
 > email: {{ main_config.email_adresse|default:"er.khursaid7tr [@] gmail [dot] com" }}
 > github: {{ social_accounts.github|cut:"https://www."|cut:"https://"|cut:"http://"|default:"github.com/ansari-khursaid7tr" }}
 > linkedin: {{ social_accounts.linkedin|cut:"https://www."|cut:"https://"|cut:"http://"|default:"linkedin.com/in/ansarikhursaid7tr" }}</pre>
-        </div>
-        <div class="hero-terminal__line" style="margin-top:0.3rem;">
-          <span class="hero-terminal__cursor" id="json-cursor" style="display:none;">▊</span>
+          </div>
+          <div class="hero-terminal__line" style="margin-top:0.3rem;">
+            <span class="hero-terminal__cursor" id="json-cursor" style="display:none;">▊</span>
+          </div>
         </div>
       </div>
+      <div style="margin-top: 1.5rem;">
+        <a class="link" href="{% url 'about' %}">
+          <svg class="icon icon-arrow-right" aria-hidden="true" focusable="false">
+            <use xlink:href="#icon-arrow-right"></use>
+          </svg>
+          About Me
+        </a>
+        {% spaceless %}
+        <div class="padding-top">
+          {% include '_social_accounts.html' %}
+        </div>
+        {% endspaceless %}
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <p class="lead" align="justify">
+        {{ index_config.intro_text }}
+      </p>
     </div>
   </div>
 </section>
