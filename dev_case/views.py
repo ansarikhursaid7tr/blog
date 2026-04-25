@@ -4,8 +4,7 @@ from django.shortcuts import render
 from blog.models import BlogPost
 from config.models import MainConfig, SocialAccountsConfig
 from pages.models import AboutSiteConfig, IndexSiteConfig
-from portfolio.models import Project, Certification, Experience
-
+from portfolio.models import Certification, Experience, Project
 
 from .settings import ROBOTS_DISALLOW
 from .sitemaps import get_sitemap_absolute_url

@@ -56,4 +56,4 @@ class StaticSitemap(Sitemap):
 def get_sitemap_absolute_url(request):
     domain = get_current_site(request)
     scheme = "https" if SESSION_COOKIE_SECURE else "http"
-    return f"{scheme}://{domain}/sitemap.xml"
+    return scheme + "://" + str(domain) + "/sitemap.xml"

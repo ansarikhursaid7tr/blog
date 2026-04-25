@@ -1,10 +1,10 @@
 import os
 from pathlib import Path
 
+from django.core.management.utils import get_random_secret_key
+
 import cloudinary.api
 import environ
-
-from django.core.management.utils import get_random_secret_key
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -190,8 +190,8 @@ if USE_S3_STORAGE:
     DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
     STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
-    STATIC_URL = f"https://{AWS_S3_ENDPOINT_URL}/{STATIC_ROOT}/"
-    MEDIA_URL = f"https://{AWS_S3_ENDPOINT_URL}/{MEDIA_ROOT}/"
+    STATIC_URL = "https://" + f"{AWS_S3_ENDPOINT_URL}/{STATIC_ROOT}/"
+    MEDIA_URL = "https://" + f"{AWS_S3_ENDPOINT_URL}/{MEDIA_ROOT}/"
 
 else:
     STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
