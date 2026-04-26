@@ -51,8 +51,8 @@
   }
   .project-card__img {
     width: 100%;
-    max-width: 250px;
-    margin: 0 0 1.25rem 0;
+    max-width: 120px;
+    margin: 0 0 1rem 0;
   }
   .project-card__header {
     font-size: 1.3rem;
