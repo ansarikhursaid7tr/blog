@@ -272,7 +272,7 @@ cloudinary.config(
     cloud_name=env.str('CLOUD_NAME'),
     api_key=env.str('CLOUDINARY_API_KEY'),
     api_secret=env.str('CLOUDINARY_API_SECRET'),
-    secure=env.str('CLOUDINRAY_SECURE'),
+    secure=env.bool('CLOUDINARY_SECURE', default=True),
 )
 
 # Default file storage
