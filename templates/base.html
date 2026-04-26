@@ -8,9 +8,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   {% block meta %}{% endblock meta %}
   <title>{{ main_config.site_name }} {% block title%}{% endblock title %}</title>
-  <link href="{% static 'css/style.css' %}?v=1.3" rel="stylesheet" />
+  <link href="{% static 'css/style.css' %}?v=1.4" rel="stylesheet" />
   {% block styles %}{% endblock styles %}
-  <script src="{% static 'js/main.js' %}?v=1.3"></script>
+  <script src="{% static 'js/main.js' %}?v=1.4"></script>
   {% if use_umami %}
   <script async defer data-website-id="{{ umami_id }}" src="{{ umami_url }}"></script>
   {% endif %}
