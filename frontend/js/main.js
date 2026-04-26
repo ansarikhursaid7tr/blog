@@ -2,8 +2,8 @@ import { toggleCommentForm } from "./scripts/comment";
 
 document.addEventListener("DOMContentLoaded", () => {
   // ── Theme Toggle ──
-  const toggleBtn = document.getElementById("theme-toggle");
-  if (toggleBtn) {
+  const toggleBtns = document.querySelectorAll(".theme-toggle");
+  if (toggleBtns.length > 0) {
     const currentTheme = localStorage.getItem("theme") || 
                          (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
                          
@@ -11,15 +11,17 @@ document.addEventListener("DOMContentLoaded", () => {
       document.documentElement.setAttribute("data-theme", "light");
     }
 
-    toggleBtn.addEventListener("click", () => {
-      let theme = document.documentElement.getAttribute("data-theme");
-      if (theme === "light") {
-        document.documentElement.removeAttribute("data-theme");
-        localStorage.setItem("theme", "dark");
-      } else {
-        document.documentElement.setAttribute("data-theme", "light");
-        localStorage.setItem("theme", "light");
-      }
+    toggleBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        let theme = document.documentElement.getAttribute("data-theme");
+        if (theme === "light") {
+          document.documentElement.removeAttribute("data-theme");
+          localStorage.setItem("theme", "dark");
+        } else {
+          document.documentElement.setAttribute("data-theme", "light");
+          localStorage.setItem("theme", "light");
+        }
+      });
     });
   }
 
