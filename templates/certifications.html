@@ -29,7 +29,10 @@
       {% endfor %}
 
       {% if coursera_certs and other_certs %}
-      <hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--card-border);" />
+      <div style="margin: 4rem 0 3rem; text-align: center; position: relative;">
+        <hr style="border: none; border-top: 2px dashed var(--primary-color); opacity: 0.4; margin: 0;" />
+        <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--bg-color); padding: 0 1.5rem; color: var(--primary-color); font-family: 'Fira Code', monospace; font-weight: 700; font-size: 1.1rem; letter-spacing: 1px;">Coursera</span>
+      </div>
       {% endif %}
 
       {% for cert in coursera_certs %}
