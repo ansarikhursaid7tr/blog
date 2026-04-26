@@ -1,7 +1,7 @@
 from django.core.mail import send_mail
 from django.shortcuts import render
 
-from dev_case import settings
+from django.conf import settings
 
 from .forms import ContactForm
 from .models import Contact
@@ -25,22 +25,26 @@ def contact(request):
             # Format custom obfuscated email strings (e.g. [@] and [dot]) to standard emails
             recipient_email = raw_email.replace(" [@] ", "@").replace(" [dot] ", ".").replace("[@]", "@").replace("[dot]", ".")
 
-            if settings.EMAIL_NOTIFICATION:
-                send_mail(
-                    "DevCase: new message via contact page",
-                    f"Message:{user_message} | Author: {user_name} | Email: {user_email}",
-                    settings.DEFAULT_FROM_EMAIL,
-                    [recipient_email],
-                    fail_silently=False,
-                )
-
             new_contact = Contact(
                 name=user_name,
                 message=user_message,
                 email=user_email,
             )
-
             new_contact.save()
+
+            if settings.EMAIL_NOTIFICATION:
+                try:
+                    send_mail(
+                        "DevCase: new message via contact page",
+                        f"Message:{user_message} | Author: {user_name} | Email: {user_email}",
+                        settings.DEFAULT_FROM_EMAIL,
+                        [recipient_email],
+                        fail_silently=False,
+                    )
+                except Exception as e:
+                    # Catch all SMTP errors so the form submission doesn't crash on Vercel
+                    print(f"Failed to send email notification: {e}")
+
             is_submitted = True
             form = ContactForm()
     else:
