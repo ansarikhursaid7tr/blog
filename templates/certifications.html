@@ -10,7 +10,7 @@
     <h1 class="main-headline text-center"><span style="color: var(--primary-color); opacity: 0.8;">>ls/</span>Certifications</h1>
     
     <div class="experience-list margin-top">
-      {% for cert in certifications %}
+      {% for cert in other_certs %}
       <div class="article-card margin-top" style="padding: 1.5rem; cursor: default;">
         <h2 class="article-card__header" style="margin: 0; color: var(--primary-color);">{{ cert.name }}</h2>
         <div class="experience-item__date" style="margin: 0.5rem 0 1rem; opacity: 0.7; font-family: 'Fira Code', monospace; font-size: 0.85rem;">
@@ -23,7 +23,27 @@
         {% endif %}
       </div>
       {% empty %}
-      <p class="lead">No certifications listed yet. Check back soon!</p>
+        {% if not coursera_certs %}
+        <p class="lead">No certifications listed yet. Check back soon!</p>
+        {% endif %}
+      {% endfor %}
+
+      {% if coursera_certs and other_certs %}
+      <hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--card-border);" />
+      {% endif %}
+
+      {% for cert in coursera_certs %}
+      <div class="article-card margin-top" style="padding: 1.5rem; cursor: default;">
+        <h2 class="article-card__header" style="margin: 0; color: var(--primary-color);">{{ cert.name }}</h2>
+        <div class="experience-item__date" style="margin: 0.5rem 0 1rem; opacity: 0.7; font-family: 'Fira Code', monospace; font-size: 0.85rem;">
+          {{ cert.date|date:"F Y" }} <span style="margin: 0 10px; opacity: 0.3;">|</span> {{ cert.issuer }}
+        </div>
+        {% if cert.url %}
+        <div style="margin-top: 1rem;">
+          <a href="{{ cert.url }}" class="link" target="_blank" style="font-weight: 600; font-size: 0.9rem;">Verify Credentials &rarr;</a>
+        </div>
+        {% endif %}
+      </div>
       {% endfor %}
     </div>
   </div>

@@ -37,10 +37,12 @@ def about(request):
 
 
 def certifications(request):
-    certifications = Certification.objects.all().order_by("-date")
+    other_certs = Certification.objects.exclude(issuer__icontains="Coursera").order_by("-date")
+    coursera_certs = Certification.objects.filter(issuer__icontains="Coursera").order_by("-date")
     social_accounts = SocialAccountsConfig.get_solo()
     context = {
-        "certifications": certifications,
+        "other_certs": other_certs,
+        "coursera_certs": coursera_certs,
         "social_accounts": social_accounts,
     }
     return render(request, "certifications.html", context=context)
