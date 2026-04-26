@@ -3,7 +3,7 @@
 
 {% load static %}
 {% load markdown_tags %}
-{% block title%} - {{ project.title }}{% endblock title %}
+{% block title%}{{ project.title }}{% endblock title %}
 {% block meta %}
 <meta property=og:title content="{{ project.title }}">
 {% if project.seo %}
