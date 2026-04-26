@@ -18,12 +18,19 @@ def contact(request):
             user_message = form.cleaned_data["user_message"]
             user_email = form.cleaned_data["user_email"]
 
+            from config.models import MainConfig
+            main_config = MainConfig.get_solo()
+            raw_email = main_config.email_adresse
+            
+            # Format custom obfuscated email strings (e.g. [@] and [dot]) to standard emails
+            recipient_email = raw_email.replace(" [@] ", "@").replace(" [dot] ", ".").replace("[@]", "@").replace("[dot]", ".")
+
             if settings.EMAIL_NOTIFICATION:
                 send_mail(
                     "DevCase: new message via contact page",
                     f"Message:{user_message} | Author: {user_name} | Email: {user_email}",
                     settings.DEFAULT_FROM_EMAIL,
-                    [settings.EMAIL_RECIPIENT],
+                    [recipient_email],
                     fail_silently=False,
                 )
 
