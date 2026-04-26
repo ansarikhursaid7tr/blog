@@ -1,0 +1,33 @@
+{% extends "base.html"%}
+{% block page_id %}experience{% endblock %}{% block page_id2 %}experience{% endblock %}
+
+{% load static %}
+{% load markdown_tags %}
+{% block title%} - Experience{% endblock title %}
+{% block content %}
+<main class="margin-top">
+  <div class="small-container">
+    <h1 class="main-headline text-center"><span style="color: var(--primary-color); opacity: 0.8;">>ls/</span>Experience</h1>
+    
+    <div class="experience-list margin-top">
+      {% for exp in experiences %}
+      <div class="article-card margin-top" style="padding: 1.5rem; cursor: default;">
+        <h2 class="article-card__header" style="margin: 0; color: var(--primary-color);">{{ exp.position }}</h2>
+        <div class="experience-item__date" style="margin: 0.5rem 0 1rem; opacity: 0.7; font-family: 'Fira Code', monospace; font-size: 0.85rem;">
+          {{ exp.start_date|date:"F Y" }} — 
+          {% if exp.is_current or not exp.end_date %}
+            <span class="badge">Present</span>
+          {% else %}
+            {{ exp.end_date|date:"F Y" }}
+          {% endif %}
+          <span style="margin: 0 10px; opacity: 0.3;">|</span>
+          {{ exp.company }}
+        </div>
+      </div>
+      {% empty %}
+      <p class="lead">Detailing professional journey... Check back soon!</p>
+      {% endfor %}
+    </div>
+  </div>
+</main>
+{% endblock content %}
